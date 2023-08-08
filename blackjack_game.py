@@ -20,7 +20,6 @@ import os
 class blackjack:
     # Var
     
-    
     # Creating the Deck to Draw from
     deck = ["clubs_two","clubs_three","clubs_four","clubs_five","clubs_six","clubs_seven","clubs_eight","clubs_nine","clubs_ten","clubs_jack","clubs_queen","clubs_king","clubs_ace","diamonds_two","diamonds_three","diamonds_four","diamonds_five","diamonds_six","diamonds_seven","diamonds_eight","diamonds_nine","diamonds_ten","diamonds_jack","diamonds_queen","diamonds_king","diamonds_ace","hearts_two","hearts_three","hearts_four","hearts_five","hearts_six","hearts_seven","hearts_eight","hearts_nine","hearts_ten","hearts_jack","hearts_queen","hearts_king","hearts_ace","spades_two","spades_three","spades_four","spades_five","spades_six","spades_seven","spades_eight","spades_nine","spades_ten","spades_jack","spades_queen","spades_king","spades_ace"]
     deck_value = [2,3,4,5,6,7,8,9,10,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,10,11]
@@ -29,7 +28,6 @@ class blackjack:
     aces = ['clubs_ace', 'diamonds_ace', 'hearts_ace', 'shades_ace']
     
     # We ask for Purse
-   
     os.system('cls')
     purse = float(input('How Much do you have to play with?: '))
     
