@@ -13,8 +13,8 @@ class blackjack:
     os.system('cls')
     purse = float(input('How Much do you have to play with?: '))
     
-    # Well it just clears the console to look better
     def clear_console():
+        # Well it just clears the console to look better
         os.system('cls')
     
     def play_again():
@@ -78,8 +78,7 @@ class blackjack:
             cashout = cashout + bet*2
 
     def split_final_win1():
-        global cashout1
-        global result_split1
+        global cashout1, result_split1
         # Is the Players split over 21 -> Lose (on this split)
         if player_points_split1 > 21:
             cashout1 = 0
@@ -101,8 +100,7 @@ class blackjack:
                 result_split1 = 'The Player won.'
 
     def split_final_win2():
-        global cashout2
-        global result_split2
+        global cashout2, result_split2
         # Is the Players split over 21 -> Lose (on this split)
         if player_points_split2 > 21:
             cashout2 = 0
@@ -130,7 +128,6 @@ class blackjack:
         player_cards.append(blackjack.deck[random_number])
         player_cards_names.append(blackjack.deck_card[random_number])
         player_points = player_points + blackjack.deck_value[random_number]
-
         # Ace check to either be 11 or 1
         if player_points > 21:
             if player_cards[-1] in blackjack.aces:
@@ -175,7 +172,6 @@ class blackjack:
         for x in range(len(player_cards)):
             print(player_cards[x], end=" ")
         print("\n")
-        
         # We print the outcome of the Dealer
         # The last card and thier value is hidden
         print(f'Dealer: {dealer_points - value + fake_value} ', end=" ")
@@ -191,14 +187,12 @@ class blackjack:
         for x in range(len(player_cards_split1)):
             print(player_cards_split1[x], end=" ")
         print("\n")
-
         # Its the outcome of the second split
         print("Split two: ", end="")
         print(player_points_split2, end=" ")
         for x in range(len(player_cards_split2)):
             print(player_cards_split2[x], end=" ")
         print("\n")
-        
         # We print the outcome of the Dealer
         # The last card and thier value is hidden
         print("Dealer: ", end="")
@@ -214,7 +208,6 @@ class blackjack:
         for x in range(len(player_cards)):
             print(player_cards[x], end=" ")
         print("\n")
-
         # The Dealer points and cards
         print(f'Dealer: {dealer_points} ', end=" ")
         for x in range(len(dealer_cards)):
@@ -232,21 +225,18 @@ class blackjack:
         for x in range(len(player_cards_split1)):
             print(player_cards_split1[x], end=" ")
         print("\n")
-
         print(result_split2)
         print("Split two: ", end="")
         print(player_points_split2, end=" ")
         for x in range(len(player_cards_split2)):
             print(player_cards_split2[x], end=" ")
         print("\n") 
-
         # Printing the Dealers cards and points
         print("Dealer: ", end="")
         print(dealer_points, end=" ")
         for x in range(len(dealer_cards)):
             print(dealer_cards[x], end=" ")
         print("\n")
-
         # Printing the money and stuff
         print("Bet:", bet)
         print("Cashout Split one:", cashout1)
@@ -306,8 +296,7 @@ class blackjack:
             blackjack.play_again()
 
     def split():
-        global player_points_split1
-        global player_points_split2
+        global player_points_split1, player_points_split2
         # Here we Split both decks and player points
         player_cards_split1.append(player_cards[0])
         player_cards_split2.append(player_cards[1])
@@ -343,56 +332,49 @@ class blackjack:
                 split2 = 'no'
             else:
                 split2 = input("Do you want another card on split two?: ")
+            # If his answer is unvalid he will get ask again
             while split2.lower() not in split2_Options:
                 print("You need to decide if yes or no!")
                 split2 = input("Do you want another card on split two?: ")
+            # If he agrees to another card he gets one
             while split2.lower() == 'yes':
                 blackjack.draw_split2(player_cards_split2)
                 blackjack.split_Outcome()
+                # If he has over 21 in the second split he can't get another card
                 if player_points_split2 > 21:
                     split2 = 'no'
                 else:
                     split2 = input("Do you want another card on split two?: ")
+            # If he don't wants a card on the second split it will go on
             if split2.lower() == 'no':
                 blackjack.clear_console()
 
     def draw_split1(split_cards):
         global player_points_split1
+        # Draws the First Split a random Card
         random_number = random.randint(0,41)
         split_cards.append(blackjack.deck[random_number])
         player_points_split1 = player_points_split1 + blackjack.deck_value[random_number]
+        # Ace check to either be 11 or 1
         if player_points_split1 > 21:
             if split_cards[-1] in blackjack.aces:
                 player_points_split1 = player_points_split1 - 10
     
     def draw_split2(split_cards):
         global player_points_split2
+        # Draws the Second Split a random Card
         random_number = random.randint(0,41)
         split_cards.append(blackjack.deck[random_number])
         player_points_split2 = player_points_split2 + blackjack.deck_value[random_number]
+        # Ace check to either be 11 or 1
         if player_points_split2 > 21:
             if split_cards[-1] in blackjack.aces:
                 player_points_split2 = player_points_split2 - 10
 
     def run():
-        global player_cards
-        global dealer_cards
-        global player_cards_split1
-        global player_cards_split2
-        global player_cards_names
-        global player_points
-        global player_points_split1
-        global player_points_split2
-        global dealer_points
-        global bet
-        global cashout
-        global cashout1
-        global cashout2
-        global fake_value
-        global Options
-        global split1_Options
-        global split2_Options
-
+        # Globalize nearly everything
+        global player_cards, dealer_cards, player_cards_split1, player_cards_split2, player_cards_names, player_points, player_points_split1, player_points_split2, dealer_points, bet, cashout, cashout1, cashout2, fake_value, Options, split1_Options, split2_Options
+        # Setting up each Variable to get reset with each time playing
         Options = ['hit', 'stand', 'double', 'split', 'surrender']
         split1_Options = ['yes', 'no']
         split2_Options = ['yes', 'no']
@@ -410,27 +392,23 @@ class blackjack:
         cashout2 = 0
         fake_value = 0
         # We ask Bet
+        # If you don't have money left you can't play anymore
         if blackjack.purse <= 0:
                 print('Your Broke.')
                 exit()
         bet = float(input('How much of a bet do you want to place?: '))
+        # Make sure you set a bet
         while bet <= 0:
             blackjack.clear_console()
             print(f"You have to set a bet over 0, you have {blackjack.purse} to play with.")
             bet = float(input('How much of a bet do you want to place?: '))
+        # If your bet is higher than the money you have you can't set it
         while bet > blackjack.purse:
             print(f'Invalid amount you dont have enough money, you have {blackjack.purse} to play with.')
-            if blackjack.purse < 0:
-                print('Your Broke.')
-                exit()
-            else:
-                bet = float(input('How much of a bet do you want to place?: '))
-        if blackjack.purse < 0:
-            print('Your Broke.')
-            exit()
-        # Takes the money from the purse   
+            bet = float(input('How much of a bet do you want to place?: '))
+        # Takes the bet from the purse   
         blackjack.purse = blackjack.purse - bet
-        # Run each function at correct times
+        # Run each function
         blackjack.clear_console()
         blackjack.Player()
         blackjack.Player()
@@ -440,6 +418,7 @@ class blackjack:
         blackjack.Outcome()
         blackjack.Decision()
         blackjack.final_win()
+        # Add the money you won to your purse
         blackjack.purse = blackjack.purse + cashout
         blackjack.final_Outcome()
         blackjack.play_again()
